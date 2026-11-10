@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#031b1e" />
+<meta name="referrer" content="origin" />
+<title>UG Program | Institute of Venture Building</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="css/styles.css">
+
+
+<style id="ug-special-book-styles">
+.ug-special-book{height:440svh;position:relative;background:#e8f6f1;color:#06282e;overflow:clip;isolation:isolate}
+.ug-special-book-stage{position:sticky;top:0;height:100svh;min-height:680px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:42px 24px 64px;background-image:radial-gradient(rgba(28,164,151,.12) .8px,transparent .8px);background-size:10px 10px}
+.ug-special-book-heading{text-align:center;margin:0 0 22px;position:relative;z-index:2}
+.ug-special-book-heading .eyebrow{color:#139d95;letter-spacing:.2em;font-size:.68rem;font-weight:800;text-transform:uppercase}
+.ug-special-book-heading h2{font:800 clamp(2rem,4vw,3.5rem)/1.05 Manrope,sans-serif;letter-spacing:-.055em;margin:8px 0;color:#06282e}
+.ug-special-book-heading h2 span{color:#159f97}
+.ug-special-book-heading p{margin:8px 0 0;color:#55716e}
+.ug-book-wrap{width:min(100%,1040px);height:min(68vh,650px);min-height:480px;perspective:2200px;perspective-origin:50% 48%;filter:drop-shadow(0 30px 30px rgba(2,50,48,.16))}
+.ug-book{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.ug-book:before{content:"";position:absolute;inset:8px 0 0 12px;background:repeating-linear-gradient(90deg,#d5e0d9 0 2px,#f7f8ef 2px 4px);border-radius:4px 13px 13px 4px;transform:translateZ(-22px);box-shadow:12px 8px 0 #d3dfd9}
+.ug-book-spine{position:absolute;z-index:8;left:0;top:0;bottom:0;width:34px;border-radius:9px 0 0 9px;background:linear-gradient(90deg,#031d20,#0b4946 45%,#062b2d);transform:translateZ(8px);box-shadow:inset -4px 0 7px rgba(0,0,0,.28)}
+.ug-book-page{position:absolute;inset:0 0 0 18px;border-radius:3px 12px 12px 3px;transform-origin:left center;transform-style:preserve-3d;backface-visibility:hidden;overflow:hidden}
+.ug-book-cover{z-index:7;background:linear-gradient(135deg,#073d3b,#052a2d 68%,#031e22);color:#effbf7;border:1px solid rgba(91,226,211,.55);box-shadow:inset 0 0 0 10px rgba(255,255,255,.025),inset 8px 0 18px rgba(0,0,0,.22);display:grid;place-items:center}
+.ug-book-cover:after{content:"";position:absolute;inset:22px;border:1px solid rgba(91,226,211,.28);pointer-events:none}
+.ug-book-cover-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:35px;gap:22px}
+.ug-book-logo{width:clamp(90px,13vw,150px);height:clamp(55px,8vw,90px);object-fit:contain;filter:brightness(0) saturate(100%) invert(79%) sepia(29%) saturate(1012%) hue-rotate(119deg) brightness(95%) contrast(91%)}
+.ug-book-cover-rule{width:100px;height:2px;background:#4edbcf}
+.ug-book-cover-kicker,.ug-book-cover-footer{font:800 .65rem Manrope,sans-serif;letter-spacing:.24em;color:#a8d9d0}
+.ug-book-cover h3{font:800 clamp(2.7rem,7vw,6rem)/.92 Manrope,sans-serif;letter-spacing:-.07em;margin:0}
+.ug-book-cover h3 span{color:#57dfd1;font-size:.55em;letter-spacing:.08em}
+.ug-book-cover-edition{position:absolute;bottom:-115px;font:700 .58rem Manrope;letter-spacing:.18em;color:#80bdb4}
+.ug-book-content{z-index:2;background:linear-gradient(135deg,#fffefa,#f1f7f2);border:1px solid #c8e8df;padding:clamp(26px,4vw,54px) clamp(28px,5vw,66px);color:#092d33;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+.ug-book-page-top,.ug-book-page-footer{display:flex;justify-content:space-between;gap:15px;color:#168e88;font:800 .62rem Manrope,sans-serif;letter-spacing:.16em}
+.ug-book-content h3{font:800 clamp(2.8rem,7vw,6.6rem)/.95 Manrope,sans-serif;letter-spacing:-.075em;margin:30px 0 12px;color:#062b32}
+.ug-book-title-line{height:5px;width:100%;background:linear-gradient(90deg,#4ad8cd 0 35%,#d6f1e9 35% 100%)}
+.ug-book-page-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(20px,4vw,54px);height:calc(100% - 150px);align-items:center;padding:18px 0}
+.ug-book-facts{display:grid;grid-template-columns:1fr 1fr;column-gap:26px;row-gap:0}
+.ug-book-facts>div{padding:15px 0;border-bottom:1px solid #dcebe5}
+.ug-book-facts>div:nth-last-child(-n+2){border-bottom:0}
+.ug-book-facts b{display:block;color:#168e88;font:800 .65rem Manrope,sans-serif;letter-spacing:.08em;margin-bottom:7px}
+.ug-book-facts p{font:500 clamp(.78rem,1vw,.95rem)/1.45 "DM Sans",sans-serif;color:#40565a;margin:0}
+.ug-book-photo-collage{position:relative;min-height:280px;height:100%;display:grid;place-items:center;background:radial-gradient(ellipse at center,#d8eee5,transparent 68%)}
+.ug-book-photo-collage span{width:65%;aspect-ratio:4/5;border-radius:10px;background:linear-gradient(145deg,#0c5a53,#8ac9b5);display:grid;place-items:center;text-align:center;color:#eafff7;font:800 1rem Manrope;letter-spacing:.1em;box-shadow:0 18px 35px rgba(6,66,58,.18)}
+.ug-book-photo-collage i{position:absolute;width:26%;aspect-ratio:1;border:5px solid #fff;border-radius:10px;background:linear-gradient(135deg,#b7d7c8,#e4eee4);box-shadow:0 10px 24px rgba(5,50,46,.16)}
+.ug-book-photo-collage i:nth-of-type(1){top:9%;left:2%}.ug-book-photo-collage i:nth-of-type(2){top:15%;right:0}.ug-book-photo-collage i:nth-of-type(3){bottom:7%;left:8%}
+.ug-book-page-footer{position:absolute;bottom:22px;left:clamp(28px,5vw,66px);right:clamp(28px,5vw,66px);font-size:.55rem;color:#64827c}
+.ug-book-scroll-note{display:flex;align-items:center;gap:12px;margin-top:22px;color:#51716b;font:800 .6rem Manrope,sans-serif;letter-spacing:.16em}
+.ug-book-scroll-dot{width:7px;height:7px;border-radius:50%;background:#20b9ad;box-shadow:0 0 0 5px rgba(32,185,173,.12)}
+.ug-book-page-count{color:#129d95;margin-left:12px}
+@media(max-width:700px){.ug-special-book{height:auto;overflow:visible}.ug-special-book-stage{position:relative;height:auto;min-height:0;padding:70px 16px}.ug-book-wrap{height:auto;min-height:0;perspective:none;filter:none}.ug-book{height:auto;display:flex;flex-direction:column;gap:14px}.ug-book:before,.ug-book-spine{display:none}.ug-book-page{position:relative;inset:auto;transform:none!important;min-height:560px;border-radius:12px;backface-visibility:visible}.ug-book-cover{min-height:480px}.ug-book-cover-edition{position:static;margin-top:20px}.ug-book-content{padding:25px 20px}.ug-book-content h3{font-size:clamp(2.5rem,12vw,4rem);margin-top:22px}.ug-book-page-grid{height:auto;grid-template-columns:1fr;padding-bottom:50px}.ug-book-facts{grid-template-columns:1fr}.ug-book-facts>div:nth-last-child(-n+2){border-bottom:1px solid #dcebe5}.ug-book-photo-collage{min-height:220px}.ug-book-page-footer{bottom:16px;left:20px;right:20px}.ug-book-scroll-note{display:none}}
+@media(prefers-reduced-motion:reduce){.ug-special-book{height:auto;overflow:visible}.ug-special-book-stage{position:relative;height:auto}.ug-book-page{transform:none!important}}
+</style>
+
+
+<style id="ug-book-layout-fix">
+/* Layout correction: keep the chapter title visible and give every page room to breathe. */
+.ug-special-book{height:420svh;overflow:clip}
+.ug-special-book-stage{
+  box-sizing:border-box;
+  height:100svh;
+  min-height:720px;
+  padding:clamp(104px,13vh,138px) 24px 34px;
+  justify-content:flex-start;
+  gap:0;
+}
+.ug-special-book-heading{flex:0 0 auto;margin:0 0 clamp(14px,2.2vh,24px)}
+.ug-special-book-heading h2{font-size:clamp(2rem,3.4vw,3.1rem);margin:7px 0}
+.ug-special-book-heading p{font-size:.98rem;margin-top:6px}
+.ug-book-wrap{
+  width:min(100%,1120px);
+  height:clamp(430px,61vh,590px);
+  min-height:430px;
+  flex:0 1 auto;
+  perspective:2400px;
+}
+.ug-book{height:100%;transform-style:preserve-3d}
+.ug-book-page{box-sizing:border-box;inset:0 0 0 18px}
+.ug-book-cover{z-index:10}
+#ugBookPage1{z-index:9}
+#ugBookPage2{z-index:8}
+#ugBookPage3{z-index:7}
+.ug-book-content{
+  padding:clamp(22px,2.7vw,38px) clamp(26px,4vw,54px) 58px;
+  display:flex;
+  flex-direction:column;
+}
+.ug-book-page-top{flex:0 0 auto}
+.ug-book-content h3{
+  font-size:clamp(2.7rem,6vw,5.5rem);
+  line-height:.96;
+  margin:clamp(16px,2.2vh,24px) 0 10px;
+  overflow-wrap:anywhere;
+}
+.ug-book-title-line{flex:0 0 5px}
+.ug-book-page-grid{
+  flex:1 1 auto;
+  min-height:0;
+  height:auto;
+  grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr);
+  align-items:stretch;
+  gap:clamp(18px,3vw,38px);
+  padding:clamp(14px,2vh,20px) 0 0;
+}
+.ug-book-facts{
+  min-height:0;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  column-gap:24px;
+  align-content:stretch;
+}
+.ug-book-facts>div{padding:12px 0;min-width:0}
+.ug-book-facts b{font-size:.62rem;margin-bottom:6px}
+.ug-book-facts p{font-size:clamp(.76rem,.92vw,.88rem);line-height:1.38}
+.ug-book-photo-collage{min-height:0;height:100%;max-height:330px;align-self:center}
+.ug-book-photo-collage span{width:62%;max-height:90%;font-size:.9rem}
+.ug-book-page-footer{bottom:17px}
+.ug-book-scroll-note{margin-top:clamp(12px,2vh,20px);flex:0 0 auto}
+@media(max-height:760px) and (min-width:701px){
+ .ug-special-book-stage{padding-top:98px;padding-bottom:20px}
+ .ug-special-book-heading{margin-bottom:12px}
+ .ug-special-book-heading h2{font-size:2rem}
+ .ug-special-book-heading p{font-size:.85rem}
+ .ug-book-wrap{height:58vh;min-height:390px}
+ .ug-book-content{padding-top:20px;padding-bottom:48px}
+ .ug-book-content h3{font-size:clamp(2.4rem,5vw,4.4rem);margin:12px 0 8px}
+ .ug-book-facts>div{padding:8px 0}
+ .ug-book-facts p{font-size:.75rem;line-height:1.3}
+ .ug-book-photo-collage{max-height:260px}
+}
+@media(max-width:900px) and (min-width:701px){
+ .ug-book-page-grid{grid-template-columns:minmax(0,1fr) minmax(180px,.65fr);gap:18px}
+ .ug-book-facts{column-gap:16px}
+ .ug-book-facts p{font-size:.74rem}
+ .ug-book-content h3{font-size:clamp(2.5rem,6vw,4.5rem)}
+}
+@media(max-width:700px){
+ .ug-special-book-stage{padding:70px 16px}
+ .ug-book-wrap{height:auto;min-height:0}
+ .ug-book-page-grid{display:grid;grid-template-columns:1fr;height:auto}
+ .ug-book-facts{grid-template-columns:1fr}
+ .ug-book-content{min-height:0}
+}
+</style>
+
+
+<style id="ug-book-back-cover-style">
+.ug-book-back-cover{
+ z-index:1;
+ display:grid;
+ place-items:center;
+ color:#effbf7;
+ background:linear-gradient(135deg,#073d3b,#052a2d 68%,#031e22);
+ border:1px solid rgba(91,226,211,.55);
+ box-shadow:inset 0 0 0 10px rgba(255,255,255,.025),inset 8px 0 18px rgba(0,0,0,.22);
+}
+.ug-book-back-cover:after{
+ content:"";position:absolute;inset:22px;border:1px solid rgba(91,226,211,.28);pointer-events:none;
+}
+.ug-book-back-inner{
+ position:relative;z-index:1;max-width:680px;padding:32px;
+ display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(14px,2.4vh,24px);
+}
+.ug-book-back-logo{
+ width:clamp(100px,13vw,155px);height:clamp(58px,8vw,92px);object-fit:contain;
+ filter:brightness(0) saturate(100%) invert(79%) sepia(29%) saturate(1012%) hue-rotate(119deg) brightness(95%) contrast(91%);
+}
+.ug-book-back-rule{width:90px;height:2px;background:#4edbcf}
+.ug-book-back-kicker,.ug-book-back-footer{
+ margin:0;color:#a8d9d0;font:800 .66rem Manrope,sans-serif;letter-spacing:.24em;text-transform:uppercase;
+}
+.ug-book-back-inner h3{
+ margin:0;color:#f2fbf8;font:800 clamp(2.8rem,6vw,5.5rem)/.94 Manrope,sans-serif;letter-spacing:-.065em;
+}
+.ug-book-back-inner h3 span{color:#57dfd1}
+.ug-book-back-copy{max-width:440px;margin:0;color:#c4e3dc;font:500 clamp(.9rem,1.3vw,1.05rem)/1.6 "DM Sans",sans-serif}
+@media(max-width:700px){
+ .ug-book-back-cover{min-height:480px}
+ .ug-book-back-inner h3{font-size:clamp(2.5rem,11vw,4rem)}
+}
+</style>
+
+</head>
+<body>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+<div class="nav-wrap">
+ <nav class="nav">
+  <a class="logo logo-image" href="index.html" aria-label="IVB home"><img src="assets/logo.webp" alt="IVB"></a>
+  <div class="nav-links" id="navLinks">
+   <a href="ug-admissions.html" aria-current="page">UG Program</a><a href="index.html#founders">FoT 2026</a><a href="index.html#ecosystem">D2C Lab</a>
+  </div>
+  <a class="btn primary nav-cta" href="mailto:ugadmissions@buildwithivb.com?subject=IVB%20UG%20Admissions">Enquire Now <span class="arrow">↗</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+ </nav>
+</div>
+
+<main>
+ <section class="ug-hero" id="ugStory" aria-labelledby="ugTitle">
+  <div class="ug-hero-inner">
+   <div class="ug-scene-center">
+   <div class="ug-copy" id="ugIntroStage">
+    <div class="ug-facts" aria-label="Program details shown on the previous page">
+     <span class="ug-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg>3 years</span>
+     <span class="ug-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full time</span>
+     <span class="ug-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Chennai</span>
+    </div>
+    <div class="eyebrow">Undergraduate Program · Institute of Venture Building</div>
+    <h1 class="ug-title" id="ugTitle"><span class="ug-title-light">UG Program in</span><span>Entrepreneurship</span><span>&amp; AI</span></h1>
+    <p class="ug-lede">Build the skills to turn ideas into action, learn from people building in the real world, and shape a path that fits your ambition.</p>
+    <div class="ug-actions"><a class="btn primary" href="mailto:ugadmissions@buildwithivb.com?subject=IVB%20UG%20Admissions">Apply Now <span class="arrow">→</span></a><a class="btn ghost" href="mailto:ugadmissions@buildwithivb.com?subject=IVB%20UG%20Program%20Information">Ask a Question</a></div>
+   </div>
+   <div class="ug-film-wrap" id="ugVideoStage" aria-hidden="true">
+    <div class="ug-film-edge" aria-hidden="true"></div>
+    <div class="ug-film-frame">
+     <iframe class="ug-youtube" id="ugYoutube" title="Institute of Venture Building overview video" data-src="https://www.youtube-nocookie.com/embed/t9z61XTRrrg?start=4&amp;rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="ug-film-watch">If the player doesn’t load, <a href="https://www.youtube.com/watch?v=t9z61XTRrrg&amp;t=4s" target="_blank" rel="noopener">watch on YouTube ↗</a></div>
+    <div class="ug-film-index"><span>INSTITUTE OF VENTURE BUILDING</span><span>01 / THE IVB APPROACH</span></div>
+   </div>
+   </div>
+  </div>
+  <div class="ug-scroll-cue" aria-hidden="true"><i></i><span id="ugScrollCueText">Scroll to reveal the IVB story</span></div>
+ </section>
+ <section class="ug-program-snapshot" id="ug-program-snapshot" aria-labelledby="ugSnapshotTitle">
+  <header class="ug-snapshot-heading">
+   <div class="eyebrow">Program at a glance</div>
+   <h2 id="ugSnapshotTitle">A degree shaped by <span>doing.</span></h2>
+   <p>Snapshot based on the previous page · details pending confirmation</p>
+  </header>
+  <div class="ug-card-grid" id="ugCardGrid">
+   <article class="ug-program-card"><span class="ug-card-number">01 / THE JOURNEY</span><h3>3 Years · Full time</h3><p>A comprehensive curriculum that connects theoretical knowledge with practical application.</p><span class="ug-card-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11.5"/><path d="M16 7v3M16 22v3M7 16h3M22 16h3M16 11l2.8 6-6 3 3.2-9Z"/></svg></span></article>
+   <article class="ug-program-card"><span class="ug-card-number">02 / INDUSTRY EXPERIENCE</span><h3>Internships</h3><p>Explore work across product, design, and growth.</p><span class="ug-card-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4.5" y="10" width="23" height="17" rx="3"/><path d="M11 10V7.5A2.5 2.5 0 0 1 13.5 5h5A2.5 2.5 0 0 1 21 7.5V10M4.5 17h23M13 16v3h6v-3"/></svg></span></article>
+   <article class="ug-program-card"><span class="ug-card-number">03 / AREAS TO EXPLORE</span><h3>Specialisations</h3><ul class="ug-specialisation-list"><li>Marketing</li><li>Finance</li><li>Software Development</li></ul><span class="ug-card-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 26V7M5 26h22M9 21l6-6 4 3 8-10M21 8h6v6"/></svg></span></article>
+   <article class="ug-program-card"><span class="ug-card-number">04 / MAKE IT REAL</span><h3>Venture Building</h3><p>Develop a business idea with practical guidance and mentorship.</p><span class="ug-card-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 7 15h6l-1 8 13-13h-7l-2-6Z"/><path d="M9 26h14M12 29h8"/></svg></span></article>
+  </div>
+ </section>
+
+  
+
+ <section class="ug-roadmap" id="ugRoadmap" aria-labelledby="ugRoadmapTitle">
+  <div class="ug-roadmap-stage">
+   <header class="ug-roadmap-heading">
+    <div class="eyebrow">The learning journey</div>
+    <h2 id="ugRoadmapTitle">Academic <span>Roadmap</span></h2>
+   </header>
+   <div class="ug-map-layout">
+    <div class="ug-roadmap-map" id="ugRoadmapMap" role="img" aria-label="A winding route connecting the three stages of the undergraduate journey">
+     <span class="ug-map-compass" aria-hidden="true">N</span>
+     <span class="ug-map-scale" aria-hidden="true">YOUR PATH</span>
+     <div class="ug-mobile-route" aria-hidden="true"><span class="is-active" data-mobile-stop="0">01</span><span data-mobile-stop="1">02</span><span data-mobile-stop="2">03</span></div>
+     <svg class="ug-road-svg" viewBox="0 0 420 720" aria-hidden="true">
+      <defs><linearGradient id="roadGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55e8dc"/><stop offset=".55" stop-color="#22bdb4"/><stop offset="1" stop-color="#b3f6ef"/></linearGradient></defs>
+      <path class="ug-road-base" d="M210 52 C355 112 355 206 210 270 C65 334 65 420 210 478 C355 536 355 622 210 674"/>
+      <path class="ug-road-progress" id="ugRoadProgressPath" d="M210 52 C355 112 355 206 210 270 C65 334 65 420 210 478 C355 536 355 622 210 674"/>
+      <g class="ug-road-stop is-active" data-map-stop="0" transform="translate(210 154)"><circle r="27"/><text y="-2">YEAR</text><text y="13">01</text></g>
+      <g class="ug-road-stop" data-map-stop="1" transform="translate(210 374)"><circle r="27"/><text y="-2">YEAR</text><text y="13">02</text></g>
+      <g class="ug-road-stop" data-map-stop="2" transform="translate(210 590)"><circle r="27"/><text y="-2">YEAR</text><text y="13">03</text></g>
+     </svg>
+    </div>
+    <div class="ug-roadmap-panels" id="ugRoadmapPanels">
+     <article class="ug-roadmap-panel is-active" data-roadmap-panel="0" data-year="01" aria-hidden="false">
+      <div class="ug-roadmap-copy"><span class="ug-roadmap-kicker">YEAR 01 / LEARN</span>
+       <h3>Experiential Learning</h3>
+       <h4>at IVB Campus</h4>
+       <p>Build your foundation through guided, hands-on learning and exploration on campus. Connect ideas with practical work.</p>
+       <div class="ug-roadmap-tags"><span>Learn by doing</span><span>Explore interests</span><span>Build foundations</span></div>
+      </div>
+      <div><div class="ug-roadmap-video-wrap"><iframe class="ug-roadmap-video" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?rel=0" title="Temporary Year 1 video placeholder" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
+     </article>
+     <article class="ug-roadmap-panel" data-roadmap-panel="1" data-year="02" aria-hidden="true" inert>
+      <div class="ug-roadmap-copy"><span class="ug-roadmap-kicker">YEAR 02 / EXPERIENCE</span>
+       <h3>Industry Experience</h3>
+       <h4>Explore work beyond the classroom</h4>
+       <p>Get closer to how teams work across different roles and functions. Explore practical experiences in areas such as product, design, and growth.</p>
+       <div class="ug-roadmap-tags"><span>Industry exposure</span><span>Real teams</span><span>New perspectives</span></div>
+      </div>
+      <div><div class="ug-roadmap-video-wrap"><iframe class="ug-roadmap-video" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?rel=0" title="Temporary Year 2 video placeholder" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
+     </article>
+     <article class="ug-roadmap-panel" data-roadmap-panel="2" data-year="03" aria-hidden="true" inert>
+      <div class="ug-roadmap-copy"><span class="ug-roadmap-kicker">YEAR 03 / BUILD</span>
+       <h3>Venture Building</h3>
+       <h4>Turn an idea into a real business</h4>
+       <p>Shape an idea with peers, test it in the real world, and learn to refine what you build with practical guidance and mentorship.</p>
+       <div class="ug-roadmap-tags"><span>Make and test</span><span>Build with peers</span><span>Mentorship</span></div>
+      </div>
+      <div><div class="ug-roadmap-video-wrap"><iframe class="ug-roadmap-video" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?rel=0" title="Temporary Year 3 video placeholder" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
+     </article>
+    </div>
+   </div>
+   <div class="ug-roadmap-progress" aria-hidden="true"><span id="ugRoadmapProgressLabel">SCROLL TO TRACE THE JOURNEY</span><span class="ug-roadmap-progress-bar"><span id="ugRoadmapProgressFill"></span></span><span>01 — 03</span></div>
+  </div>
+ </section>
+ <section class="ug-outcomes" id="ugOutcomes" aria-labelledby="ugOutcomesTitle">
+  <div class="ug-outcomes-stage">
+   <header class="ug-outcomes-header">
+    <div class="eyebrow">Beyond graduation</div>
+    <h2 id="ugOutcomesTitle">WHERE DOES YOUR IVB JOURNEY <span>TAKE YOU?</span></h2>
+    <p>Your degree opens different doors. Explore the paths you can shape with what you learn and build at IVB.</p>
+   </header>
+   <div class="ug-outcomes-layout">
+    <div class="ug-outcomes-video-column">
+     <div class="ug-outcomes-video-frame"><iframe class="ug-outcomes-video" src="https://www.youtube-nocookie.com/embed/t9z61XTRrrg?start=4&amp;rel=0" title="Institute of Venture Building overview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+     <div class="ug-outcomes-video-note"><span>Institute of Venture Building</span><span>Learn · Build · Grow</span></div>
+    </div>
+    <div class="ug-outcomes-window" role="region" aria-label="Graduation pathways">
+     <div class="ug-outcomes-window-top"><span class="ug-outcomes-window-label"><i aria-hidden="true"></i> IVB / FUTURE PATHWAYS</span><span class="ug-outcomes-count" id="ugOutcomesCount">01 — 03</span></div>
+     <div class="ug-outcomes-tabs" role="tablist" aria-label="Choose a graduation pathway">
+      <button class="ug-outcomes-tab is-active" type="button" id="ugOutcomeTab0" role="tab" aria-selected="true" aria-controls="ugOutcomePanel0" tabindex="0" data-outcome-tab="0"><span>01</span><b>Entrepreneurship</b></button>
+      <button class="ug-outcomes-tab" type="button" id="ugOutcomeTab1" role="tab" aria-selected="false" aria-controls="ugOutcomePanel1" tabindex="-1" data-outcome-tab="1"><span>02</span><b>Employment</b></button>
+      <button class="ug-outcomes-tab" type="button" id="ugOutcomeTab2" role="tab" aria-selected="false" aria-controls="ugOutcomePanel2" tabindex="-1" data-outcome-tab="2"><span>03</span><b>Higher Education</b></button>
+     </div>
+     <div class="ug-outcomes-viewport" id="ugOutcomesViewport" aria-label="Graduation pathway details">
+      <div class="ug-outcomes-track" id="ugOutcomesTrack"></div>
+     </div>
+      <img class="ug-outcomes-finger" id="ugOutcomesFinger" src="assets/cursor.png" alt="" aria-hidden="true" draggable="false">
+     <div class="ug-outcomes-progress" aria-hidden="true"><span>PATHWAY</span><span class="ug-outcomes-progress-bar"><span id="ugOutcomesProgressFill"></span></span><span>03</span></div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="ug-placement" id="ugPlacement" aria-label="IVB placements and recruitment partners">
+  <div class="ug-placement-stage">
+   <div class="ug-placement-world" id="ugPlacementWorld">
+    <div class="ug-placement-flight" id="ugPlacementFlight" role="group" aria-label="Flying recruitment partner logos"></div>
+    <div class="ug-placement-heading" id="ugPlacementHeading">
+     <p class="ug-placement-eyebrow">THE IVB OUTCOME</p>
+     <h2 class="ug-placement-title"><span><span class="ug-placement-count" data-count="100">100</span>% PLACEMENTS.</span><span><span class="ug-placement-count" data-count="100">100</span>% IMPACT.</span></h2>
+     <p class="ug-placement-support">IVB Internships = Paid, Structured and High Impact</p>
+     <a class="ug-placement-cta" href="mailto:ugadmissions@buildwithivb.com?subject=Placement%20Report%20Request" aria-label="Request the IVB Placement Report by email">Download Placement Report <span aria-hidden="true">↗</span></a>
+    </div>
+   </div>
+   <div class="ug-placement-progress" aria-hidden="true"><span>PLACEMENT OUTCOMES</span><i></i><span>01 — 01</span></div>
+  </div>
+ </section>
+
+  <section class="ug-special-book" id="ugSpecializations" aria-label="IVB specializations">
+   <div class="ug-special-book-stage">
+    <header class="ug-special-book-heading">
+     <span class="eyebrow">Explore your direction</span>
+     <h2>Choose Your <span>Edge.</span></h2>
+     <p>Three ways to shape what you learn, build and become.</p>
+    </header>
+    <div class="ug-book-wrap" id="ugBookWrap">
+     <div class="ug-book" id="ugBook">
+      <div class="ug-book-spine" aria-hidden="true"></div>
+      <article class="ug-book-page ug-book-cover" id="ugBookCover">
+       <div class="ug-book-cover-inner">
+        <img class="ug-book-logo" src="assets/logo.webp" alt="Institute of Venture Building">
+        <span class="ug-book-cover-rule"></span>
+        <p class="ug-book-cover-kicker">THE UNDERGRADUATE PROGRAM</p>
+        <h3>IVB<br><span>SPECIALIZATIONS</span></h3>
+        <p class="ug-book-cover-footer">LEARN · BUILD · GROW</p>
+        <span class="ug-book-cover-edition">01 / YOUR NEXT CHAPTER</span>
+       </div>
+      </article>
+      <article class="ug-book-page ug-book-content ug-book-page-marketing" id="ugBookPage1">
+       <div class="ug-book-page-top"><span>IVB / SPECIALIZATIONS</span><span>01 — 03</span></div>
+       <h3>Marketing</h3><div class="ug-book-title-line"></div>
+       <div class="ug-book-page-grid">
+        <div class="ug-book-facts">
+         <div><b>STUDENT PROFILE</b><p>Comfortable with ambiguity; enjoy solving problems through communication, design, technology; creating content and products.</p></div>
+         <div><b>IN 3RD YEAR</b><p>Start a business; focus on marketing / design / product; and supporting other functions.</p></div>
+         <div><b>AFTER GRADUATION</b><p>Continue the business / marketing or design freelancer / employment in marketing, product, design, and generalist roles.</p></div>
+         <div><b>CAREER PATHS</b><p>Fast tracked to leading marketing / design / product teams, business units, and being CMO / CEO.</p></div>
+        </div>
+        <div class="ug-book-photo-collage" aria-label="Classroom photography placeholders"><span>CLASSROOM<br>IN ACTION</span><i></i><i></i><i></i></div>
+       </div>
+       <div class="ug-book-page-footer"><span>INSTITUTE OF VENTURE BUILDING</span><span>TURN THE PAGE →</span></div>
+      </article>
+      <article class="ug-book-page ug-book-content ug-book-page-finance" id="ugBookPage2">
+       <div class="ug-book-page-top"><span>IVB / SPECIALIZATIONS</span><span>02 — 03</span></div>
+       <h3>Finance</h3><div class="ug-book-title-line"></div>
+       <div class="ug-book-page-grid">
+        <div class="ug-book-facts">
+         <div><b>STUDENT PROFILE</b><p>Comfortable with numbers and ambiguity; enjoy business and strategic challenges.</p></div>
+         <div><b>IN 3RD YEAR</b><p>Start a business; focus on marketing / business development / operations; and supporting other functions.</p></div>
+         <div><b>AFTER GRADUATION</b><p>Continue the business / marketing freelancer / employment in marketing, finance, and generalist roles.</p></div>
+         <div><b>CAREER PATHS</b><p>Fast tracked to leading marketing, sales, finance teams, business units, and being CEO, CFO, COO.</p></div>
+        </div>
+        <div class="ug-book-photo-collage" aria-label="Classroom photography placeholders"><span>BUSINESS<br>IN ACTION</span><i></i><i></i><i></i></div>
+       </div>
+       <div class="ug-book-page-footer"><span>INSTITUTE OF VENTURE BUILDING</span><span>TURN THE PAGE →</span></div>
+      </article>
+      <article class="ug-book-page ug-book-content ug-book-page-software" id="ugBookPage3">
+       <div class="ug-book-page-top"><span>IVB / SPECIALIZATIONS</span><span>03 — 03</span></div>
+       <h3>Software Development</h3><div class="ug-book-title-line"></div>
+       <div class="ug-book-page-grid">
+        <div class="ug-book-facts">
+         <div><b>STUDENT PROFILE</b><p>Enjoy structured challenges and solving problems through technology.</p></div>
+         <div><b>IN 3RD YEAR</b><p>Start a business (can be tech led business); focus on tech; can optionally support other functions.</p></div>
+         <div><b>AFTER GRADUATION</b><p>Continue the business / take up a generalist or tech job.</p></div>
+         <div><b>CAREER PATHS</b><p>Fast tracked to being an Engineering Manager, Product Manager, and being a CTO / CEO.</p></div>
+        </div>
+        <div class="ug-book-photo-collage" aria-label="Classroom photography placeholders"><span>TECHNOLOGY<br>IN ACTION</span><i></i><i></i><i></i></div>
+       </div>
+       <div class="ug-book-page-footer"><span>INSTITUTE OF VENTURE BUILDING</span><span>END OF CHAPTER</span></div>
+      </article>
+
+      <article class="ug-book-page ug-book-back-cover" id="ugBookBackCover" aria-label="End of the IVB specializations book">
+       <div class="ug-book-back-inner">
+        <img src="assets/logo.webp" alt="Institute of Venture Building" class="ug-book-back-logo">
+        <span class="ug-book-back-rule"></span>
+        <p class="ug-book-back-kicker">YOUR NEXT CHAPTER</p>
+        <h3>YOUR EDGE.<br><span>YOUR FUTURE.</span></h3>
+        <p class="ug-book-back-copy">Choose what excites you. Build what matters. Create a future that is yours.</p>
+        <p class="ug-book-back-footer">LEARN&nbsp; · &nbsp;BUILD&nbsp; · &nbsp;GROW</p>
+       </div>
+      </article>
+     </div>
+    </div>
+    <div class="ug-book-scroll-note"><span class="ug-book-scroll-dot"></span><span id="ugBookScrollLabel">SCROLL TO OPEN THE BOOK</span><span class="ug-book-page-count" id="ugBookPageCount">COVER / 03</span></div>
+   </div>
+  </section>
+
+<section class="ug-impact" id="ugImpactPlayer" aria-labelledby="ugImpactTitle">
+   <div class="ug-impact-stage">
+    <div class="ug-impact-stadium" aria-hidden="true"></div>
+    <div class="ug-impact-lights" aria-hidden="true"><span class="ug-impact-light ug-impact-light--left"></span><span class="ug-impact-light ug-impact-light--right"></span></div>
+    <div class="ug-impact-grain" aria-hidden="true"></div>
+    <div class="ug-impact-intro" id="ugImpactIntro">
+     <p class="ug-impact-eyebrow">A special presence in the IVB story</p>
+     <h2 class="ug-impact-title" id="ugImpactTitle"><span class="ug-impact-title-ivb">IVB'S</span><span>IMPACT PLAYER</span></h2>
+    </div>
+    <div class="ug-impact-scene">
+     <div class="ug-impact-quote" id="ugImpactQuote">
+      <p class="ug-impact-quote-label">Impact Player</p>
+      <span class="ug-impact-quote-mark" aria-hidden="true">“</span>
+      <blockquote>“IVB's UG program has all the ingredients to groom new generation business leaders, with both skills and character, and I am proud to be associated with it. For graduates of this program, I am sure success will chase them.”</blockquote>
+      <div class="ug-impact-signature" id="ugImpactSignature">
+       <div class="ug-impact-signature-slot">
+        <img src="assets/ashwin-signature.png" alt="Ravichandran Ashwin's signature" onerror="this.remove();this.nextElementSibling.hidden=false">
+        <span class="ug-impact-signature-placeholder" hidden>Place signature image here<br>assets/ashwin-signature.png</span>
+       </div>
+       <div class="ug-impact-person"><strong>Mr. Ravichandran Ashwin</strong><span>Indian Cricketer</span></div>
+      </div>
+     </div>
+     <figure class="ug-impact-portrait" id="ugImpactPortrait">
+      <img src="assets/aswin.webp" alt="Ravichandran Ashwin">
+     </figure>
+    </div>
+    <div class="ug-impact-bottomline" aria-hidden="true"><span>IVB · IMPACT PLAYER</span><i></i><span>LEARN · BUILD · GROW</span></div>
+    <div class="ug-impact-progress" aria-hidden="true"><span></span></div>
+   </div>
+  </section>
+</main>
+
+<footer class="footer ivb-footer">
+ <div class="footer-topline"></div>
+ <div class="footer-main">
+  <div class="footer-column"><h3>Quick Links</h3><a href="index.html">Home</a><a href="ug-admissions.html">UG Program</a><a href="index.html#founders">FoT 2026</a></div>
+  <div class="footer-column"><h3>Legal</h3><a href="index.html#business-details">Business Details</a><a href="index.html#terms">Terms &amp;<br>Conditions</a><a href="index.html#privacy">Privacy Policy</a></div>
+  <div class="footer-column footer-contact"><h3>Get in Touch</h3><a href="tel:+917538834691"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h3l2 5-2 2c1.3 2.5 3.2 4.4 5.7 5.7l2-2 5 2v3c0 1.1-.9 2-2 2C10.8 20.7 3.3 13.2 3 5c0-1.1.9-2 2-2Z"/></svg></span>+91 7538834691</a><a href="https://maps.google.com/?q=Chennai" target="_blank" rel="noopener"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Chennai</a></div>
+  <div class="footer-social-column"><a class="footer-email" href="mailto:ugadmissions@buildwithivb.com">ugadmissions<br>@buildwithivb.com</a><div class="footer-socials" aria-label="Social media"><a href="https://wa.me/917538834691" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"/><path d="M8.2 7.8c.3-.5.6-.5.9-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.3 1.7 2.3 2.2.3.2.5.2.7-.1l.8-.9c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.3-.8 1.8-.6.5-1.3.7-2.1.5-1.1-.2-2.5-.9-3.9-2.1-1.2-1.1-2.1-2.5-2.3-3.5-.2-.9.1-1.8.5-2.3Z"/></svg></a><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M5 9v10M5 5v.1M10 19v-6c0-2 1.2-3.5 3.2-3.5S17 11 17 13v6M10 10v9M3 9h4M3 19h4M15 19h4"/></svg></a></div></div>
+ </div>
+ <div class="footer-bottom"><span>© <span id="year"></span> Institute of Venture Building | All Rights Reserved</span></div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/ug-admissions.js"></script>
+
+
+
+
+
+<script id="ug-special-book-script">
+(() => {
+ const section=document.getElementById('ugSpecializations');
+ const cover=document.getElementById('ugBookCover');
+ const pages=[1,2,3].map(n=>document.getElementById('ugBookPage'+n));
+ const back=document.getElementById('ugBookBackCover');
+ const label=document.getElementById('ugBookScrollLabel');
+ const count=document.getElementById('ugBookPageCount');
+ if(!section||!cover||!back||pages.some(p=>!p)) return;
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const mobile=()=>window.matchMedia('(max-width:700px)').matches;
+ let raf=0;
+ const clamp=n=>Math.max(0,Math.min(1,n));
+ function render(){
+  raf=0;
+  if(mobile()||reduced){
+   cover.style.transform='none';
+   pages.forEach(p=>p.style.transform='none');
+   back.style.transform='none';
+   return;
+  }
+  const rect=section.getBoundingClientRect();
+  const range=Math.max(1,section.offsetHeight-window.innerHeight);
+  const progress=clamp(-rect.top/range);
+  const step=progress*4;
+  const turn=value=>clamp(value)*180;
+
+  // Cover opens first. Each specialization leaf turns only when the next one is revealed.
+  cover.style.transform=`rotateY(${-turn(step)}deg)`;
+  cover.style.zIndex='10';
+  pages.forEach((page,i)=>{
+   page.style.transform=`rotateY(${-turn(step-(i+1))}deg)`;
+   page.style.zIndex=String(9-i);
+  });
+  back.style.transform='none';
+  back.style.zIndex='1';
+
+  const current=Math.min(4,Math.max(0,Math.floor(step)));
+  if(label) label.textContent=current===0?'SCROLL TO OPEN THE BOOK':current===4?'CHAPTER COMPLETE':'SCROLL TO TURN THE PAGE';
+  if(count) count.textContent=current===0?'COVER / 03':current===4?'END / IVB':`${String(current).padStart(2,'0')} / 03`;
+ }
+ function onScroll(){if(!raf)raf=requestAnimationFrame(render);}
+ if(!mobile()&&!reduced){
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  render();
+ }
+})();
+</script>
+
+</body>
+</html>
