@@ -6,13 +6,83 @@
  const loadVideo=()=>{if(videoLoaded||!youtube)return;youtube.src=youtube.dataset.src;videoLoaded=true};
  const cardGrid=document.getElementById('ugCardGrid');
  if(cardGrid&&'IntersectionObserver' in window&&!reduceMotion){const cardsObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');cardsObserver.unobserve(entry.target)}}),{threshold:.2,rootMargin:'0px 0px -5% 0px'});cardsObserver.observe(cardGrid)}else if(cardGrid){cardGrid.classList.add('is-visible')}
-  const roadmap=document.getElementById('ugRoadmap'),roadmapMap=document.getElementById('ugRoadmapMap'),roadPath=document.getElementById('ugRoadProgressPath'),roadPanels=[...document.querySelectorAll('[data-roadmap-panel]')],roadStops=[...document.querySelectorAll('[data-map-stop]')],mobileStops=[...document.querySelectorAll('[data-mobile-stop]')],roadFill=document.getElementById('ugRoadmapProgressFill'),roadLabel=document.getElementById('ugRoadmapProgressLabel');let roadmapFrame=0;
- if(roadmap&&roadmapMap&&roadPanels.length&&roadStops.length&&!reduceMotion){
-  document.body.classList.add('ug-roadmap-ready');
-   const updateRoadmap=()=>{roadmapFrame=0;const rect=roadmap.getBoundingClientRect(),travel=Math.max(1,roadmap.offsetHeight-innerHeight),progress=Math.max(0,Math.min(1,-rect.top/travel));const activeIndex=progress<.36?0:progress<.62?1:2;const zoom=Math.max(0,Math.min(1,progress/.12)),release=Math.max(0,Math.min(1,(progress-.86)/.14));roadmapMap.style.transform=`translateY(${-38-55*release}px) scale(${(.78+.22*zoom)*(1-.18*release)})`;roadmapMap.style.opacity=String((.4+.6*zoom)*(1-release));if(roadPath)roadPath.style.strokeDashoffset=String(1150*(1-Math.max(0,Math.min(1,(progress-.02)/.72))));roadPanels.forEach((panel,index)=>{const active=index===activeIndex;panel.classList.toggle('is-active',active);panel.setAttribute('aria-hidden',String(!active));panel.inert=!active});[...roadStops,...mobileStops].forEach(stop=>{const index=Number(stop.dataset.mapStop??stop.dataset.mobileStop);stop.classList.toggle('is-active',index===activeIndex);stop.classList.toggle('is-visited',index<activeIndex)});roadmap.classList.toggle('is-releasing',release>.98);if(roadFill)roadFill.style.width=`${progress*100}%`;if(roadLabel)roadLabel.textContent=progress<.12?'ZOOMING INTO THE JOURNEY':`YEAR 0${activeIndex+1} / 03`;};
-  const onRoadmapScroll=()=>{if(!roadmapFrame)roadmapFrame=requestAnimationFrame(updateRoadmap)};
-  addEventListener('scroll',onRoadmapScroll,{passive:true});addEventListener('resize',onRoadmapScroll);updateRoadmap();
- }
+  const roadmap=document.getElementById('ugRoadmap'),
+        roadmapMap=document.getElementById('ugRoadmapMap'),
+        roadPath=document.getElementById('ugRoadProgressPath'),
+        roadPanels=[...document.querySelectorAll('[data-roadmap-panel]')],
+        roadStops=[...document.querySelectorAll('[data-map-stop]')],
+        mobileStops=[...document.querySelectorAll('[data-mobile-stop]')],
+        roadFill=document.getElementById('ugRoadmapProgressFill'),
+        roadLabel=document.getElementById('ugRoadmapProgressLabel');
+  let roadmapFrame=0;
+  if(roadmap&&roadmapMap&&roadPanels.length&&roadStops.length){
+   const clamp=n=>Math.max(0,Math.min(1,n));
+   const smooth=(a,b,v)=>{const t=clamp((v-a)/(b-a));return t*t*(3-2*t)};
+   const desktop=()=>window.innerWidth>900&&!reduceMotion;
+   const mapSvg=roadmapMap.querySelector('.ug-road-svg');
+   const total=roadPath&&roadPath.getTotalLength?roadPath.getTotalLength():1600;
+   if(roadPath){roadPath.style.strokeDasharray=String(total);roadPath.style.strokeDashoffset=String(total);}
+   const updateRoadmap=()=>{
+    roadmapFrame=0;
+    const rect=roadmap.getBoundingClientRect();
+    const travel=Math.max(1,roadmap.offsetHeight-window.innerHeight);
+    const progress=clamp(-rect.top/travel);
+    if(!desktop()){
+     roadmapMap.style.clipPath='none';roadmapMap.style.opacity='1';
+     if(mapSvg)mapSvg.style.transform='none';
+     if(roadPath)roadPath.style.strokeDashoffset='0';
+     roadPanels.forEach(panel=>{panel.style.opacity='';panel.style.transform='';panel.classList.add('is-active');panel.setAttribute('aria-hidden','false');panel.inert=false;});
+     roadStops.forEach((stop,index)=>{stop.classList.toggle('is-active',index===0);stop.classList.toggle('is-visited',false);});
+     if(roadLabel)roadLabel.textContent='EXPLORE THE THREE YEARS';
+     if(roadFill)roadFill.style.width='0%';
+     return;
+    }
+    const opening=smooth(0,.15,progress);
+    const closing=smooth(.91,1,progress);
+    const visible=opening*(1-closing);
+    roadmapMap.style.clipPath=`inset(0 ${(1-opening)*50+closing*50}% 0 ${(1-opening)*50+closing*50}% round 20px)`;
+    roadmapMap.style.opacity=String(visible);
+
+    // Scroll choreography: open -> zoom to each stop -> fade its information window -> travel onward.
+    const phases=[
+      {zoom:.15,show:.235,hide:.425,center:180},
+      {zoom:.435,show:.515,hide:.705,center:500},
+      {zoom:.715,show:.795,hide:.915,center:820}
+    ];
+    let active=0;
+    if(progress>=.435)active=1;
+    if(progress>=.715)active=2;
+    const phase=phases[active];
+    const zoomIn=smooth(phase.zoom,phase.show,progress);
+    const zoomOut=smooth(phase.hide-.035,phase.hide+.055,progress);
+    const zoom=1+zoomIn*.38-zoomOut*.38;
+    const offset=[22,0,-22][active];
+    if(mapSvg)mapSvg.style.transform=`translate3d(${offset}%,0,0) scale(${zoom})`;
+
+    const routeProgress=clamp((progress-.15)/.70);
+    if(roadPath)roadPath.style.strokeDashoffset=String(total*(1-routeProgress));
+    roadPanels.forEach((panel,index)=>{
+     const ph=phases[index];
+     const alpha=smooth(ph.show,ph.show+.035,progress)*(1-smooth(ph.hide-.025,ph.hide+.025,progress));
+     panel.classList.toggle('is-active',index===active&&alpha>.45);
+     panel.setAttribute('aria-hidden',String(alpha<.45));
+     panel.inert=alpha<.45;
+     panel.style.opacity=String(alpha);
+     panel.style.transform=`translate3d(0,${(1-alpha)*20}px,0) scale(${.985+alpha*.015})`;
+    });
+    [...roadStops,...mobileStops].forEach(stop=>{
+     const index=Number(stop.dataset.mapStop??stop.dataset.mobileStop);
+     stop.classList.toggle('is-active',index===active);
+     stop.classList.toggle('is-visited',index<active);
+    });
+    if(roadFill)roadFill.style.width=`${progress*100}%`;
+    if(roadLabel)roadLabel.textContent=progress<.15?'UNFOLDING THE MAP':progress<.235?'ZOOMING INTO YEAR 01':progress<.435?'YEAR 01 / LEARN':progress<.515?'TRAVELLING TO YEAR 02':progress<.715?'YEAR 02 / EXPERIENCE':progress<.795?'TRAVELLING TO YEAR 03':progress<.915?'YEAR 03 / BUILD':'FOLDING THE MAP CLOSED';
+   };
+   const onRoadmapScroll=()=>{if(!roadmapFrame)roadmapFrame=requestAnimationFrame(updateRoadmap)};
+   window.addEventListener('scroll',onRoadmapScroll,{passive:true});
+   window.addEventListener('resize',onRoadmapScroll);
+   updateRoadmap();
+  }
   const outcomes=document.getElementById('ugOutcomes'),outcomesViewport=document.getElementById('ugOutcomesViewport'),outcomesTrack=document.getElementById('ugOutcomesTrack'),outcomesCount=document.getElementById('ugOutcomesCount'),outcomesFill=document.getElementById('ugOutcomesProgressFill'),outcomesFinger=document.getElementById('ugOutcomesFinger'),outcomesWindowTop=document.querySelector('.ug-outcomes-window-top'),outcomesTabList=document.querySelector('.ug-outcomes-tabs'),outcomeTabs=[...document.querySelectorAll('[data-outcome-tab]')];let outcomeItems=[],outcomesFrame=0;
   const outcomeData=[
    {key:'entrepreneurship',number:'01',tab:'ENTREPRENEURSHIP',title:'Entrepreneurship',tagline:'Build your own destination.',motif:'MAKE IT REAL',points:['Continue with the business built at IVB.','Join a friend’s or alumni’s business.','Expand a family business or start an adjacent vertical.','Start a new business or join a venture studio.']},
@@ -80,6 +150,16 @@
 (() => {
   const section = document.getElementById('ugImpactPlayer');
   if (!section) return;
+  const signatureImage = section.querySelector('[data-signature-fallback]');
+  if (signatureImage) {
+    const revealSignatureFallback = () => {
+      const fallback = signatureImage.nextElementSibling;
+      signatureImage.remove();
+      if (fallback) fallback.hidden = false;
+    };
+    signatureImage.addEventListener('error', revealSignatureFallback, { once: true });
+    if (signatureImage.complete && signatureImage.naturalWidth === 0) revealSignatureFallback();
+  }
   const stage = section.querySelector('.ug-impact-stage');
   const intro = document.getElementById('ugImpactIntro');
   const portrait = document.getElementById('ugImpactPortrait');

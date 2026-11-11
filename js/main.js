@@ -3,6 +3,10 @@
 (() => {
  const $ = (s, root=document) => root.querySelector(s);
  const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+ document.addEventListener('error', event => {
+  const image = event.target;
+  if (image && image.matches && image.matches('img[data-hide-on-error]')) image.style.display = 'none';
+ }, true);
  $('#year').textContent = new Date().getFullYear();
 
 
@@ -479,7 +483,7 @@
  }[char]));
  const cardMarkup = leader => `
   <article class="leader-profile-card">
-   <img class="leader-profile-photo" src="${escapeHTML(leader.image || "assets/person.png")}" alt="" loading="lazy" onerror="this.style.display='none'">
+   <img class="leader-profile-photo" src="${escapeHTML(leader.image || "assets/person.png")}" alt="" loading="lazy" data-hide-on-error>
    <div class="leader-profile-content">
     <h3 class="leader-profile-name">${escapeHTML(leader.name)}</h3>
     <p class="leader-profile-role">${escapeHTML(leader.role)}</p>
@@ -487,13 +491,13 @@
      <div class="leader-experience-block">
       <span class="leader-experience-label">Now</span>
       <div class="leader-company-logos">
-       <img class="leader-company-logo" src="${escapeHTML(leader.currentCompanyLogo || "assets/company-logo-placeholder.png")}" alt="" onerror="this.style.display='none'">
+        <img class="leader-company-logo" src="${escapeHTML(leader.currentCompanyLogo || "assets/company-logo-placeholder.png")}" alt="" data-hide-on-error>
       </div>
      </div>
      <div class="leader-experience-block">
       <span class="leader-experience-label">Previously</span>
       <div class="leader-previous-list">
-       ${(leader.previousCompanyLogos || []).slice(0,3).map(logo => `<img class="leader-company-logo" src="${escapeHTML(logo)}" alt="" onerror="this.style.display='none'">`).join("")}
+        ${(leader.previousCompanyLogos || []).slice(0,3).map(logo => `<img class="leader-company-logo" src="${escapeHTML(logo)}" alt="" data-hide-on-error>`).join("")}
       </div>
      </div>
     </div>

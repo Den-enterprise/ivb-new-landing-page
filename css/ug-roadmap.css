@@ -1,0 +1,141 @@
+/* Horizontal unfolding roadmap — isolated to this section */
+#ugRoadmap{height:480svh!important;overflow:clip;background:radial-gradient(ellipse at 50% 15%,rgba(29,131,126,.2),transparent 58%),#041e21}
+#ugRoadmap .ug-roadmap-stage{
+ position:sticky;top:0;box-sizing:border-box;height:100svh;min-height:680px;overflow:hidden;
+ padding:clamp(92px,12vh,124px) clamp(22px,5vw,76px) 28px;
+ display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(12px,2vh,20px)
+}
+#ugRoadmap .ug-roadmap-heading{flex:0 0 auto;margin:0 auto;text-align:center}
+#ugRoadmap .ug-roadmap-heading h2{font-size:clamp(2.1rem,4vw,3.5rem);margin:6px 0 0}
+#ugRoadmap .ug-map-layout{
+ width:min(1320px,100%);height:auto;flex:1 1 auto;min-height:0;margin:0 auto;
+ display:grid;grid-template-rows:clamp(170px,25vh,245px) minmax(260px,1fr);
+ grid-template-columns:minmax(0,1fr);gap:clamp(12px,2vh,20px);align-items:stretch
+}
+#ugRoadmap .ug-roadmap-map{
+ position:relative;width:100%;height:100%;min-height:0;max-height:none;display:grid;place-items:center;
+ overflow:hidden;isolation:isolate;opacity:1;transform:none;transform-origin:center;
+ border:1px solid rgba(85,232,220,.24);border-radius:18px;
+ background:
+  linear-gradient(rgba(70,200,190,.055) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(70,200,190,.055) 1px,transparent 1px),
+  radial-gradient(ellipse at center,rgba(18,100,94,.55),rgba(4,37,39,.92));
+ background-size:34px 34px,34px 34px,auto;
+ box-shadow:inset 0 0 50px rgba(0,0,0,.2),0 18px 50px rgba(0,0,0,.16);
+ clip-path:inset(0 50% 0 50% round 18px);will-change:clip-path
+}
+#ugRoadmap .ug-roadmap-map:before{inset:10% 3%;border-radius:50%;border-color:rgba(85,232,220,.09);transform:none}
+#ugRoadmap .ug-roadmap-map:after{inset:20% 8%;border-radius:50%;border-color:rgba(85,232,220,.07);transform:none}
+#ugRoadmap .ug-map-paper{
+ position:absolute;inset:0;z-index:0;opacity:1!important;transform:none!important;pointer-events:none;
+ background:linear-gradient(90deg,rgba(87,224,212,.04),transparent 12%,rgba(87,224,212,.035) 50%,transparent 88%,rgba(87,224,212,.04));
+ border-radius:inherit
+}
+#ugRoadmap .ug-map-fold{position:absolute;top:0;bottom:0;width:1px;background:rgba(121,226,216,.13);box-shadow:1px 0 12px rgba(0,0,0,.14)}
+#ugRoadmap .ug-map-fold-a{left:33.333%}#ugRoadmap .ug-map-fold-b{left:66.666%}#ugRoadmap .ug-map-fold-c{display:none}
+#ugRoadmap .ug-map-roll-edge{position:absolute;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(100,221,211,.18),rgba(0,0,0,.12));opacity:0;transition:opacity .2s}
+#ugRoadmap .ug-map-roll-edge-top{left:0}#ugRoadmap .ug-map-roll-edge-bottom{right:0}
+#ugRoadmap .ug-road-svg{
+ position:relative;z-index:2;width:94%;height:100%;max-width:none;overflow:visible;
+ filter:drop-shadow(0 0 8px rgba(85,232,220,.18));transform-origin:center center;will-change:transform
+}
+#ugRoadmap .ug-road-base,#ugRoadmap .ug-road-progress{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ugRoadmap .ug-road-base{stroke:rgba(183,222,217,.22);stroke-width:5}
+#ugRoadmap .ug-road-progress{stroke:url(#roadGlow);stroke-width:7;stroke-dasharray:1600;stroke-dashoffset:1600;filter:url(#horizontalRoadGlow)}
+#ugRoadmap .ug-road-stop circle{r:31;fill:#082d30;stroke:rgba(179,225,219,.62);stroke-width:3}
+#ugRoadmap .ug-road-stop text{fill:#d3e9e6;font:800 13px Manrope,sans-serif;letter-spacing:.08em;text-anchor:middle}
+#ugRoadmap .ug-road-stop.is-active circle{fill:#43d9ce;stroke:#e0fffb;filter:drop-shadow(0 0 13px rgba(85,232,220,.75))}
+#ugRoadmap .ug-road-stop.is-active text{fill:#052c30}
+#ugRoadmap .ug-road-stop.is-visited circle{fill:#147b76;stroke:#63e8dc}
+#ugRoadmap .ug-map-compass{position:absolute;right:24px;top:16px;z-index:3;color:#9bc9c3;font-weight:800;font-size:.7rem;letter-spacing:.15em}
+#ugRoadmap .ug-map-scale{position:absolute;left:24px;bottom:15px;z-index:3;color:rgba(176,220,214,.6);font-size:.58rem;font-weight:800;letter-spacing:.16em}
+#ugRoadmap .ug-mobile-route{display:none}
+#ugRoadmap .ug-roadmap-panels{position:relative;display:grid;grid-template-columns:minmax(0,1fr);min-height:0;height:100%;align-items:stretch}
+#ugRoadmap .ug-roadmap-panel{
+ box-sizing:border-box;position:relative;min-height:0;height:100%;padding:clamp(20px,3vh,32px) clamp(24px,3.5vw,48px);
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.78fr);align-items:center;gap:clamp(24px,4vw,60px);
+ border:1px solid rgba(85,232,220,.27);border-left:3px solid rgba(85,232,220,.65);border-radius:14px;
+ background:linear-gradient(110deg,rgba(8,48,51,.96),rgba(5,34,37,.9));
+ box-shadow:0 18px 55px rgba(0,0,0,.18);overflow:hidden
+}
+#ugRoadmap .ug-roadmap-panel:before{right:20px;top:-8px;font-size:clamp(5rem,10vw,9rem)}
+#ugRoadmap .ug-roadmap-copy{position:relative;z-index:2;max-width:650px}
+#ugRoadmap .ug-roadmap-panel h3{font-size:clamp(2rem,3.5vw,3.5rem);max-width:680px;margin:10px 0 5px}
+#ugRoadmap .ug-roadmap-panel h4{margin-bottom:12px}
+#ugRoadmap .ug-roadmap-panel p{max-width:620px;margin:0 0 15px;font-size:clamp(.92rem,1.15vw,1.08rem);line-height:1.55}
+#ugRoadmap .ug-roadmap-tags{display:flex;flex-wrap:wrap;gap:8px}
+#ugRoadmap .ug-roadmap-video-wrap{width:100%;aspect-ratio:16/9;min-height:0;border:1px solid rgba(85,232,220,.28);border-radius:10px;overflow:hidden;background:#061b1d;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+#ugRoadmap .ug-roadmap-video{display:block;width:100%;height:100%;border:0}
+#ugRoadmap .ug-roadmap-progress{flex:0 0 auto;margin:0 auto;position:relative;bottom:auto}
+#ugRoadmap .ug-map-layout:after{content:"";display:none}
+@media(max-width:900px){
+ #ugRoadmap{height:auto!important;overflow:visible}
+ #ugRoadmap .ug-roadmap-stage{position:relative;top:auto;height:auto;min-height:0;overflow:visible;padding:100px 20px 46px}
+ #ugRoadmap .ug-map-layout{display:flex;flex-direction:column;height:auto}
+ #ugRoadmap .ug-roadmap-map{height:190px;min-height:190px;clip-path:none!important}
+ #ugRoadmap .ug-road-svg{width:100%}
+ #ugRoadmap .ug-roadmap-panels{height:auto;min-height:0;display:block}
+ #ugRoadmap .ug-roadmap-panel{display:grid;grid-template-columns:1fr;gap:18px;height:auto;min-height:0;margin:0 0 14px;opacity:1!important;visibility:visible!important;transform:none!important}
+ #ugRoadmap .ug-roadmap-video-wrap{max-width:560px}
+ #ugRoadmap .ug-roadmap-progress{display:none}
+}
+@media(max-width:560px){
+ #ugRoadmap .ug-roadmap-stage{padding:88px 14px 34px}
+ #ugRoadmap .ug-roadmap-map{height:150px;min-height:150px}
+ #ugRoadmap .ug-roadmap-panel{padding:22px 18px}
+ #ugRoadmap .ug-roadmap-panel h3{font-size:2rem}
+ #ugRoadmap .ug-roadmap-panel:before{font-size:5rem}
+ #ugRoadmap .ug-roadmap-tags span{font-size:.62rem}
+}
+@media(prefers-reduced-motion:reduce){
+ #ugRoadmap{height:auto!important;overflow:visible}
+ #ugRoadmap .ug-roadmap-stage{position:relative;height:auto;min-height:0}
+ #ugRoadmap .ug-roadmap-map{clip-path:none!important}
+ #ugRoadmap .ug-roadmap-panel{opacity:1!important;visibility:visible!important;transform:none!important}
+}
+
+/* The roadmap becomes one integrated map scene: route above, year window inside its lower half. */
+#ugRoadmap{height:500svh!important;overflow:clip}
+#ugRoadmap .ug-roadmap-stage{padding-top:clamp(100px,13vh,132px);padding-bottom:28px;gap:clamp(12px,1.8vh,20px)}
+#ugRoadmap .ug-map-layout{display:block;position:relative;width:min(1380px,100%);height:clamp(430px,66vh,610px);flex:0 1 auto;min-height:430px}
+#ugRoadmap .ug-roadmap-map{position:absolute;inset:0;width:100%;height:100%;display:block;clip-path:inset(0 50% 0 50% round 18px);border-radius:20px;overflow:hidden}
+#ugRoadmap .ug-road-svg{position:absolute;left:3%;top:2%;width:94%;height:43%;max-height:260px;overflow:visible;transform-origin:50% 50%;transition:none;z-index:3}
+#ugRoadmap .ug-map-paper{inset:0;z-index:0}
+#ugRoadmap .ug-map-compass{top:18px;right:26px}
+#ugRoadmap .ug-map-scale{top:39%;bottom:auto;left:26px}
+#ugRoadmap .ug-roadmap-panels{position:absolute;z-index:5;left:3%;right:3%;bottom:18px;height:48%;min-height:210px;display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch;pointer-events:none}
+#ugRoadmap .ug-roadmap-panel{position:absolute;inset:0;width:100%;height:100%;min-height:0;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(240px,.75fr);align-items:center;gap:clamp(18px,3vw,44px);padding:clamp(18px,2.4vw,32px) clamp(22px,3.2vw,44px);border:1px solid rgba(85,232,220,.34);border-left:3px solid rgba(85,232,220,.72);border-radius:15px;background:linear-gradient(112deg,rgba(4,34,37,.96),rgba(5,43,45,.94));box-shadow:0 18px 55px rgba(0,0,0,.32);pointer-events:auto;transition:opacity .55s ease,transform .65s cubic-bezier(.2,.75,.2,1),visibility .55s}
+#ugRoadmap .ug-roadmap-panel:before{font-size:clamp(5rem,9vw,8rem);right:18px;top:-3px}
+#ugRoadmap .ug-roadmap-copy{max-width:700px}
+#ugRoadmap .ug-roadmap-panel h3{font-size:clamp(1.8rem,3.1vw,3.2rem);margin:8px 0 4px}
+#ugRoadmap .ug-roadmap-panel h4{font-size:clamp(.92rem,1.3vw,1.15rem);margin:0 0 8px}
+#ugRoadmap .ug-roadmap-panel p{font-size:clamp(.82rem,1vw,.96rem);line-height:1.45;margin-bottom:10px}
+#ugRoadmap .ug-roadmap-tags{gap:6px;margin-top:10px}
+#ugRoadmap .ug-roadmap-tags span{font-size:.62rem;padding:6px 9px}
+#ugRoadmap .ug-roadmap-video-wrap{max-height:210px;aspect-ratio:16/9}
+#ugRoadmap .ug-roadmap-progress{margin-top:0}
+#ugRoadmap .ug-roadmap-panel[aria-hidden="true"]{pointer-events:none}
+@media(max-width:900px){
+ #ugRoadmap{height:auto!important;overflow:visible}
+ #ugRoadmap .ug-roadmap-stage{position:relative;top:auto;height:auto;min-height:0;overflow:visible;padding:90px 20px 42px}
+ #ugRoadmap .ug-map-layout{display:block;height:auto;min-height:0}
+ #ugRoadmap .ug-roadmap-map{position:relative;height:230px;min-height:230px;clip-path:none!important;opacity:1!important}
+ #ugRoadmap .ug-road-svg{top:4%;height:62%;width:96%;left:2%;transform:none!important}
+ #ugRoadmap .ug-map-scale{top:auto;bottom:12px}
+ #ugRoadmap .ug-roadmap-panels{position:relative;left:auto;right:auto;bottom:auto;height:auto;min-height:0;margin-top:14px;display:block;pointer-events:auto}
+ #ugRoadmap .ug-roadmap-panel{position:relative;inset:auto;height:auto;min-height:0;margin:0 0 14px;display:grid;grid-template-columns:1fr;opacity:1!important;visibility:visible!important;transform:none!important}
+ #ugRoadmap .ug-roadmap-progress{display:none}
+}
+@media(max-width:560px){
+ #ugRoadmap .ug-roadmap-stage{padding:82px 14px 32px}
+ #ugRoadmap .ug-roadmap-map{height:185px;min-height:185px}
+ #ugRoadmap .ug-roadmap-panel{padding:20px 17px}
+ #ugRoadmap .ug-roadmap-panel h3{font-size:1.9rem}
+}
+@media(prefers-reduced-motion:reduce){
+ #ugRoadmap{height:auto!important;overflow:visible}
+ #ugRoadmap .ug-roadmap-stage{position:relative;height:auto;min-height:0}
+ #ugRoadmap .ug-roadmap-map{clip-path:none!important}
+ #ugRoadmap .ug-roadmap-panels{position:relative;left:auto;right:auto;bottom:auto;height:auto;display:block}
+ #ugRoadmap .ug-roadmap-panel{position:relative;inset:auto;height:auto;opacity:1!important;visibility:visible!important;transform:none!important}
+}

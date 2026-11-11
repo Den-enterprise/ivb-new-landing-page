@@ -10,8 +10,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/ug-admissions.css">
 <link rel="stylesheet" href="css/ug-specializations.css">
+<link rel="stylesheet" href="css/ug-roadmap.css">
+
+
+
+
+
+
+
 
 </head>
 <body>
@@ -74,19 +82,22 @@
     <h2 id="ugRoadmapTitle">Academic <span>Roadmap</span></h2>
    </header>
    <div class="ug-map-layout">
-    <div class="ug-roadmap-map" id="ugRoadmapMap" role="img" aria-label="A winding route connecting the three stages of the undergraduate journey">
+    <div class="ug-roadmap-map" id="ugRoadmapMap" role="img" aria-label="An unfolding map connecting the three stages of the undergraduate journey">
+     <div class="ug-map-paper" aria-hidden="true"><span class="ug-map-fold ug-map-fold-a"></span><span class="ug-map-fold ug-map-fold-b"></span><span class="ug-map-fold ug-map-fold-c"></span><span class="ug-map-roll-edge ug-map-roll-edge-top"></span><span class="ug-map-roll-edge ug-map-roll-edge-bottom"></span></div>
      <span class="ug-map-compass" aria-hidden="true">N</span>
      <span class="ug-map-scale" aria-hidden="true">YOUR PATH</span>
      <div class="ug-mobile-route" aria-hidden="true"><span class="is-active" data-mobile-stop="0">01</span><span data-mobile-stop="1">02</span><span data-mobile-stop="2">03</span></div>
-     <svg class="ug-road-svg" viewBox="0 0 420 720" aria-hidden="true">
-      <defs><linearGradient id="roadGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55e8dc"/><stop offset=".55" stop-color="#22bdb4"/><stop offset="1" stop-color="#b3f6ef"/></linearGradient></defs>
-      <path class="ug-road-base" d="M210 52 C355 112 355 206 210 270 C65 334 65 420 210 478 C355 536 355 622 210 674"/>
-      <path class="ug-road-progress" id="ugRoadProgressPath" d="M210 52 C355 112 355 206 210 270 C65 334 65 420 210 478 C355 536 355 622 210 674"/>
-      <g class="ug-road-stop is-active" data-map-stop="0" transform="translate(210 154)"><circle r="27"/><text y="-2">YEAR</text><text y="13">01</text></g>
-      <g class="ug-road-stop" data-map-stop="1" transform="translate(210 374)"><circle r="27"/><text y="-2">YEAR</text><text y="13">02</text></g>
-      <g class="ug-road-stop" data-map-stop="2" transform="translate(210 590)"><circle r="27"/><text y="-2">YEAR</text><text y="13">03</text></g>
+     <svg class="ug-road-svg" viewBox="0 0 1000 260" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+      <defs>
+       <linearGradient id="roadGlow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#55e8dc"/><stop offset=".55" stop-color="#22bdb4"/><stop offset="1" stop-color="#b3f6ef"/></linearGradient>
+       <filter id="horizontalRoadGlow" x="-20%" y="-100%" width="140%" height="300%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <path class="ug-road-base" d="M70 132 C165 35 260 35 345 132 S520 229 610 132 S790 35 930 132"/>
+      <path class="ug-road-progress" id="ugRoadProgressPath" d="M70 132 C165 35 260 35 345 132 S520 229 610 132 S790 35 930 132"/>
+      <g class="ug-road-stop is-active" data-map-stop="0" transform="translate(180 91)"><circle r="34"/><text y="-3">YEAR</text><text y="15">01</text></g>
+      <g class="ug-road-stop" data-map-stop="1" transform="translate(500 177)"><circle r="34"/><text y="-3">YEAR</text><text y="15">02</text></g>
+      <g class="ug-road-stop" data-map-stop="2" transform="translate(820 91)"><circle r="34"/><text y="-3">YEAR</text><text y="15">03</text></g>
      </svg>
-    </div>
     <div class="ug-roadmap-panels" id="ugRoadmapPanels">
      <article class="ug-roadmap-panel is-active" data-roadmap-panel="0" data-year="01" aria-hidden="false">
       <div class="ug-roadmap-copy"><span class="ug-roadmap-kicker">YEAR 01 / LEARN</span>
@@ -116,6 +127,8 @@
       <div><div class="ug-roadmap-video-wrap"><iframe class="ug-roadmap-video" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?rel=0" title="Temporary Year 3 video placeholder" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
      </article>
     </div>
+    </div>
+
    </div>
    <div class="ug-roadmap-progress" aria-hidden="true"><span id="ugRoadmapProgressLabel">SCROLL TO TRACE THE JOURNEY</span><span class="ug-roadmap-progress-bar"><span id="ugRoadmapProgressFill"></span></span><span>01 — 03</span></div>
   </div>
@@ -259,7 +272,7 @@
       <blockquote>“IVB's UG program has all the ingredients to groom new generation business leaders, with both skills and character, and I am proud to be associated with it. For graduates of this program, I am sure success will chase them.”</blockquote>
       <div class="ug-impact-signature" id="ugImpactSignature">
        <div class="ug-impact-signature-slot">
-        <img src="assets/ashwin-signature.png" alt="Ravichandran Ashwin's signature" onerror="this.remove();this.nextElementSibling.hidden=false">
+        <img src="assets/ashwin-signature.png" alt="Ravichandran Ashwin's signature" data-signature-fallback>
         <span class="ug-impact-signature-placeholder" hidden>Place signature image here<br>assets/ashwin-signature.png</span>
        </div>
        <div class="ug-impact-person"><strong>Mr. Ravichandran Ashwin</strong><span>Indian Cricketer</span></div>
@@ -285,13 +298,16 @@
  </div>
  <div class="footer-bottom"><span>© <span id="year"></span> Institute of Venture Building | All Rights Reserved</span></div>
 </footer>
+
+
+
+
+
+
+
 <script src="js/main.js"></script>
 <script src="js/ug-admissions.js"></script>
 <script src="js/ug-specializations.js"></script>
-
-
-
-
 </body>
 </html>
 
